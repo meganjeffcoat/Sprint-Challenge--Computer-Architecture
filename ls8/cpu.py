@@ -25,6 +25,8 @@ class CPU:
             "RET": 0b00010001,
             "CMP": 0b10100111,
             "JMP": 0b01010100,
+            "JEQ": 0b01010101,
+            "JNE": 0b01010110,
         }
         self.sp = 7 # stack pointer is register R7, since starting from 0
         self.reg[7] = 0xf4
