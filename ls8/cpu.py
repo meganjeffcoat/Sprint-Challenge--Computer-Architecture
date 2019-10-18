@@ -23,6 +23,7 @@ class CPU:
             "POP": 0b01000110,
             "CALL": 0b01010000,
             "RET": 0b00010001,
+            "CMP": 0b10100111,
         }
         self.sp = 7 # stack pointer is register R7, since starting from 0
         self.reg[7] = 0xf4
@@ -65,13 +66,26 @@ class CPU:
         """ALU operations."""
 
         if op == self.operations["ADD"]:
-        # if op == OP5:  #for use with branchtable
             self.reg[reg_a] += self.reg[reg_b]
-        #elif op == "SUB": etc
+
         elif op == self.operations["MUL"]:
-        # elif op == OP4 #for branchtable
             mul = self.reg[reg_a] * self.reg[reg_b]
             self.reg[reg_a] = mul
+
+        elif op == self.operations["CMP"]:
+            # FL bits: 00000LGE
+            value_1 = self.reg[reg_a]
+            value_2 = self.reg[reg_b]
+            # If they are equal, set the Equal E flag to 1, otherwise set it to 0
+            if value_1 == value_2:
+                self.flag = 0b00000001
+            # If registerA is less than registerB, set the Less-than L flag to 1, otherwise set it to 0
+            if value_1 < value_2:
+                self.flag = 0b00000100
+            # If registerA is greater than registerB, set the Greater-than G flag to 1, otherwise set it to 0
+            if value_1 > value_2:
+                self.flag = 0b00000010
+
         else:
             raise Exception("Unsupported ALU operation")
 
