@@ -3,14 +3,6 @@
 
 import sys
 
-# for branchtable
-# OP1 = 0b10000010 # LDI
-# OP2 = 0b00000001 # HLT
-# OP3 = 0b01000111 # PRN
-# OP4 = 0b10100010 # MUL
-# OP5 = 0b10100000 # ADD
-# OP6 = 0b01000101 # PUSH
-# OP7 = 0b01000110 #POP
 
 
 class CPU:
@@ -21,14 +13,6 @@ class CPU:
         self.ram = [0] * 256
         self.reg = [0] * 8
         self.pc = 0
-        # self.branchtable = {}
-        # self.branchtable[OP1] = self.ldi
-        # self.branchtable[OP2] = self.hlt
-        # self.branchtable[OP3] = self.prn
-        # self.branchtable[OP4] = self.mul
-        # self.branchtable[OP5] = self.add
-        # self.branchtable[OP6] = self.push
-        # self.branchtable[OP7] = self.pop
         self.operations = {
             "LDI": 0b10000010,
             "HLT": 0b00000001,
@@ -42,40 +26,6 @@ class CPU:
         }
         self.sp = 7 # stack pointer is register R7, since starting from 0
         self.reg[7] = 0xf4
-
-    # for use with branchtable
-    # def ldi(self):
-    #     operand_a = self.ram_read(self.pc + 1)
-    #     operand_b = self.ram_read(self.pc + 2)
-
-    #     self.reg[operand_a] = operand_b
-    #     self.pc += 3 
-
-    # def hlt(self):
-    #     running = False
-
-    # def prn(self):
-    #   operand_a = self.ram_read(self.pc + 1)
-    #   print(self.reg[operand_a])
-    #   self.pc += 2
-
-    # def mul(self):
-    #     operand_a = self.ram_read(self.pc + 1)
-    #     operand_b = self.ram_read(self.pc + 2)
-    #     self.alu(OP4, operand_a, operand_b)
-    #     self.pc +=3
-
-    # def push(self):
-    #     operand_a = self.ram_read(self.pc + 1)
-    #     self.sp = (self.sp - 1) & 0xFF
-    #     self.ram[self.sp] = self.reg[operand_a]
-    #     self.pc +=2
-
-    # def pop(self):
-    #     operand_a = self.ram_read(self.pc + 1)
-    #     self.reg[operand_a] = self.ram[self.sp]
-    #     self.sp = (self.sp + 1) & 0xFF
-    #     self.pc += 2
 
 
     # should accept the address to read and return the value stored there
