@@ -204,7 +204,7 @@ class CPU:
                 # FL bits: 00000LGE
                 # If E flag is clear (false, 0) 
                 # # jump to the address stored in the given register
-                if self.flag & 0b00000010 == 0b00000100:
+                if self.flag == 0b00000010 & 0b00000100:
                     address = self.reg[operand_a]
                     self.pc = address
                 else:
