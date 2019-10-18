@@ -121,7 +121,7 @@ class CPU:
         # PRN = 0b01000111 # PRN R0 (pseudo-instruction, print numeric value stored in the given register)
         # HLT = 0b00000001 # HLT (halt the CPU, and exit the emulator)
 
-        #print(self.ram)
+        print(self.ram)
 
         running = True
         while running:
@@ -191,12 +191,24 @@ class CPU:
                 self.pc = address
 
             elif IR == self.operations["JEQ"]:
-                 # If equal flag is set (true), jump to the address stored in the given register
-                 pass
+                # FL bits: 00000LGE
+                 # If equal flag is set (true) 
+                 # jump to the address stored in the given register
+                if self.flag == 0b00000001:
+                    address = self.reg[operand_a]
+                    self.pc = address
+                else:
+                    self.pc += 2
             
             elif IR == self.operations["JNE"]:
-                # If E flag is clear (false, 0), jump to the address stored in the given register
-                pass
+                # FL bits: 00000LGE
+                # If E flag is clear (false, 0) 
+                # # jump to the address stored in the given register
+                if self.flag & 0b00000010 == 0b00000100:
+                    address = self.reg[operand_a]
+                    self.pc = address
+                else:
+                    self.pc += 2
 
             else:
                 print(f"Unknown instruction: {self.ram[self.pc]}")
