@@ -24,6 +24,7 @@ class CPU:
             "CALL": 0b01010000,
             "RET": 0b00010001,
             "CMP": 0b10100111,
+            "JMP": 0b01010100,
         }
         self.sp = 7 # stack pointer is register R7, since starting from 0
         self.reg[7] = 0xf4
@@ -180,6 +181,12 @@ class CPU:
             elif IR == self.operations["CMP"]:
                 self.alu(self.operations["CMP"], operand_a, operand_b)
                 self.pc +=3
+
+            elif IR == self.operations["JMP"]:
+                # Jump to the address stored in the given register
+
+                # Set the PC to the address stored in the given register
+                pass
 
             else:
                 print(f"Unknown instruction: {self.ram[self.pc]}")
