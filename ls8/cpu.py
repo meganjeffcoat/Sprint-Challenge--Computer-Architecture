@@ -184,9 +184,9 @@ class CPU:
 
             elif IR == self.operations["JMP"]:
                 # Jump to the address stored in the given register
-
+                address = self.reg[operand_a]
                 # Set the PC to the address stored in the given register
-                pass
+                self.pc = address
 
             else:
                 print(f"Unknown instruction: {self.ram[self.pc]}")
