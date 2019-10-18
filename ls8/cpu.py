@@ -26,6 +26,7 @@ class CPU:
         }
         self.sp = 7 # stack pointer is register R7, since starting from 0
         self.reg[7] = 0xf4
+        self.flag = 0b00000000
 
 
     # should accept the address to read and return the value stored there
