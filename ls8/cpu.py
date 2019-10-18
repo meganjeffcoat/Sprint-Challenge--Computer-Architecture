@@ -176,6 +176,10 @@ class CPU:
             elif IR == self.operations["ADD"]:
                 self.alu(self.operations["ADD"], operand_a, operand_b)
                 self.pc += 3
+        ########## SC Code ########################################################
+            elif IR == self.operations["CMP"]:
+                self.alu(self.operations["CMP"], operand_a, operand_b)
+                self.pc +=3
 
             else:
                 print(f"Unknown instruction: {self.ram[self.pc]}")
