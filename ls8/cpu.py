@@ -190,6 +190,14 @@ class CPU:
                 # Set the PC to the address stored in the given register
                 self.pc = address
 
+            elif IR == self.operations["JEQ"]:
+                 # If equal flag is set (true), jump to the address stored in the given register
+                 pass
+            
+            elif IR == self.operations["JNE"]:
+                # If E flag is clear (false, 0), jump to the address stored in the given register
+                pass
+
             else:
                 print(f"Unknown instruction: {self.ram[self.pc]}")
                 break
