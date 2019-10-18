@@ -121,7 +121,7 @@ class CPU:
         # PRN = 0b01000111 # PRN R0 (pseudo-instruction, print numeric value stored in the given register)
         # HLT = 0b00000001 # HLT (halt the CPU, and exit the emulator)
 
-        print(self.ram)
+        #print(self.ram)
 
         running = True
         while running:
@@ -182,7 +182,7 @@ class CPU:
         ########## SC Code ########################################################
             elif IR == self.operations["CMP"]:
                 self.alu(self.operations["CMP"], operand_a, operand_b)
-                self.pc +=3
+                self.pc += 3
 
             elif IR == self.operations["JMP"]:
                 # Jump to the address stored in the given register
@@ -192,19 +192,19 @@ class CPU:
 
             elif IR == self.operations["JEQ"]:
                 # FL bits: 00000LGE
-                 # If equal flag is set (true) 
-                 # jump to the address stored in the given register
+                # If equal flag is set (true) 
+                # jump to the address stored in the given register
                 if self.flag == 0b00000001:
                     address = self.reg[operand_a]
                     self.pc = address
                 else:
                     self.pc += 2
-            
-            elif IR == self.operations["JNE"]:
+
+            elif IR == self.operations["JNE"]: 
                 # FL bits: 00000LGE
-                # If E flag is clear (false, 0) 
-                # # jump to the address stored in the given register
-                if self.flag == 0b00000010 & 0b00000100:
+                # if E flig is clear (false, 0)
+                # jump to the address stored in the given register
+                if self.flag & 0b00000001 == 0b00000000:
                     address = self.reg[operand_a]
                     self.pc = address
                 else:
